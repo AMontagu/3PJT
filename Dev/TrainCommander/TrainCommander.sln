@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainCommander", "TrainCommander\TrainCommander.csproj", "{033D73D7-4485-46E0-95A3-7AF7C9636D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainCommander.Tests", "TrainCommander.Tests\TrainCommander.Tests.csproj", "{05538000-0BB2-4E78-A583-5EEC9B546ED8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{033D73D7-4485-46E0-95A3-7AF7C9636D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033D73D7-4485-46E0-95A3-7AF7C9636D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033D73D7-4485-46E0-95A3-7AF7C9636D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033D73D7-4485-46E0-95A3-7AF7C9636D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05538000-0BB2-4E78-A583-5EEC9B546ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05538000-0BB2-4E78-A583-5EEC9B546ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05538000-0BB2-4E78-A583-5EEC9B546ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05538000-0BB2-4E78-A583-5EEC9B546ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

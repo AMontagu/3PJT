@@ -1,0 +1,109 @@
+﻿@using TrainCommander.Models
+@model TripFormModel
+
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = @langage.departureItem,
+        Value = "oneWay",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = @langage.arrivalItem,
+        Value = "return"
+    });
+
+    List<SelectListItem> hoursItems = new List<SelectListItem>();
+    for (int i = 0; i < 24; i++)
+    {
+        hoursItems.Add(new SelectListItem
+        {
+            Text = i + ":00h",
+            Value = i.ToString(),
+            Selected = true
+        });
+    }
+}
+
+@if(Model.DepartureStation == null){Model.TripWay = true; }
+
+@using (Html.BeginForm("GetTrain", "Trip", FormMethod.Post, new { @class = "reserveForm", id = Model.idForm }))
+            {
+    <div class="form-header">
+        <h1>
+            @langage.reserveTitle
+        </h1>
+        <h3>
+            @langage.bannerTitle
+        </h3>
+    </div>
+
+                <div class="form-group">
+                    @Html.Label(@langage.trip, new { @class = "radioName" })
+                    <div class="form-group-radio">
+                        <div class="divRadio">
+                            @Html.RadioButtonFor(m => m.TripWay, true, new { @checked = "checked", @class = "tripWay" }) <p>@langage.oneWayTicket</p>
+                        </div>
+                        <div class="divRadio">
+                            @Html.RadioButtonFor(m => m.TripWay, false, new { id = "returnRadio", @class = "tripWay" }) <p>@langage.roundTrip</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-flex marginB25">
+                    <div class="fiftyFormLeft">
+                        @Html.LabelFor(m => m.DepartureStation)
+                        @Html.TextBoxFor(m => m.DepartureStation, new { @class = "formControl formText" })
+                        @Html.ValidationMessageFor(m => m.DepartureStation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="fiftyFormRight">
+                        @Html.LabelFor(m => m.ArrivalStation)
+                        @Html.TextBoxFor(m => m.ArrivalStation, new { @class = "formControl formText" })
+                        @Html.ValidationMessageFor(m => m.ArrivalStation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group form-group-flex marginB25">
+                    <div class="fiftyFormLeft">
+                        @Html.LabelFor(m => m.DateOneWay, new { @class = "formLabelAbove" })
+                        <div class="formDateTime">
+                            @Html.TextBoxFor(m => m.DateOneWay, "{0:dd/MM/yyyy}", new { @class = "date-picker formControl thirtyFormLeft", id = "datePickerOne" })
+                            @Html.ValidationMessageFor(m => m.DateOneWay, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(m => m.DepartOrArrivalOneWay, listItems, new { @class = "formControl formSelect thirtyFormMiddle" })
+                            @Html.DropDownListFor(m => m.HourOneWay, hoursItems, new { @class = "formControl formSelect thirtyFormRight" })
+                        </div>
+                    </div>
+                    <div class="fiftyFormRight" id="returnDiv" hidden="true">
+                        @Html.LabelFor(m => m.DateReturn, new { @class = "formLabelAbove" })
+                        <div class="formDateTime">
+                            @Html.TextBoxFor(m => m.DateReturn, "{0:dd/MM/yyyy}", new { @class = "date-picker formControl thirtyFormLeft", id = "datePickerReturn" })
+                            @Html.ValidationMessageFor(m => m.DateReturn, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(m => m.DepartOrArrivalReturn, listItems, new { @class = "formControl formSelect thirtyFormMiddle" })
+                            @Html.DropDownListFor(m => m.HourReturn, hoursItems, new { @class = "formControl formSelect thirtyFormRight" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label(@langage.path, new { @class = "radioName" })
+                    <div class="form-group-radio">
+                        <div class="divRadio">
+                            @Html.RadioButtonFor(m => m.KindOfTrip, "allTrain", new { @checked = "checked", @class = "kindOfTrip" }) <p>@langage.allTrain</p>
+                        </div>
+                        <div class="divRadio">
+                            @Html.RadioButtonFor(m => m.KindOfTrip, "directPath", new { @class = "kindOfTrip" }) <p>@langage.directPath</p>
+                        </div>
+                        <div class="divRadio">
+                            @Html.RadioButtonFor(m => m.KindOfTrip, "pathThrough", new { id = "pathThroughRadio", @class = "kindOfTrip" }) <p>@langage.pathThrough</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="pathThroughDiv" hidden="hidden">
+                    @Html.LabelFor(m => m.CityThrough)
+                    @Html.TextBoxFor(m => m.CityThrough, new { @class = "formControl formText fiftyInput" })
+                    @Html.ValidationMessageFor(m => m.CityThrough, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group txtAlignC">
+                    <button type="submit" class="btnAction">@langage.find</button>
+                </div>
+}

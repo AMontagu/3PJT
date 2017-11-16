@@ -1,0 +1,120 @@
+﻿@using TrainCommander.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div id="">
+        @Html.Partial("_NavBar")
+
+        @RenderBody()
+
+        @Html.Partial("_Footer")
+
+        @Html.Partial("LoginModal", new LoginViewModel())
+
+        <button type="button" id="modalBtn" hidden="true" data-toggle="modal" data-target="#myModalNorm"></button>
+        @Html.Partial("_Modal")
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required: false)
+    </div>
+    <script type="text/javascript">
+        @if (ViewBag.loginFail != null)
+        {
+            if (ViewBag.loginFail)
+            {
+                <text>
+
+        jQuery(document).ready(function (jQuery) {
+            $('#logInBtn').trigger("click");
+            $('#failureNotificationLogin').text("Your login attempt was not successful. Please try again.");
+            $('#failureNotificationLogin').addClass('marginB10');
+        });</text>
+            }
+        }
+
+        @if (ViewBag.Error != null)
+    {
+            <text>
+
+        jQuery(document).ready(function (jQuery) {
+            $('#modalBtn').trigger("click");
+            $('#modalText').text('@ViewBag.Error');
+            $('#modalTitle').text('@langage.error');
+            $('#modalText').addClass('text-danger');
+        });</text>
+    }
+
+
+        function waitLogin() {
+            $('#loadGif').show();
+            $('#loginModal').removeClass('in');
+            $('#loginModal').removeClass('fade');
+            var username = $('#WUC_HomeLoginPanel1_txtUsername').val();
+            var password = $('#WUC_HomeLoginPanel1_txtPassword').val();
+            if (username == "") {
+                $('#failureNotificationLogin').text("Your UserName is required");
+                $('#failureNotificationLogin').addClass('marginB10');
+                $('#loadGif').hide();
+                $('#loginModal').addClass('in');
+                return false;
+            }
+            if (password == "") {
+                $('#failureNotificationLogin').text("Your Password is required");
+                $('#failureNotificationLogin').addClass('marginB10');
+                $('#loadGif').hide();
+                $('#loginModal').addClass('in');
+                return false;
+            }
+            console.log("return true");
+            return true;
+        }
+
+        $(document).bind('beforeReveal.facebox', function () {
+            /*$('#facebox .body').addClass('newLetterFacebox');*/
+        });
+        function checkEmail() {
+
+            var email = document.getElementById("email");
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test(email.value)) {
+                //$('#facebox .body').width('50px');
+                //$('#facebox .body').width('350px');
+                $('#facebox .body').addClass('newLetterFacebox');
+
+
+                jQuery.facebox('Please Check your Email Address.!');
+                email.focus;
+                return false;
+            }
+
+        }
+        function ajaxLauncherPostJson(data, url, successCallback) {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                url: url,
+                data: JSON.stringify(data),
+                success: successCallback,
+                error: function (xhr, err) {
+                    if (xhr.readyState != 0 || xhr.status != 0) {
+                        alert("readyState: " + xhr.readyState + "  status: " + xhr.status + "\n\nresponseText: " + xhr.responseText);
+                    }
+                    return "error";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

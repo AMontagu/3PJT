@@ -1,0 +1,169 @@
+﻿@using TrainCommander.Models
+@model ListCarViewModel
+
+@section head{
+    <title>@langage.cart</title>
+}
+
+@section scripts{
+    <script type="text/javascript">
+
+        jQuery(document).ready(function (jQuery) {
+
+            $(".btnQuantityLess").click(function () {
+                var index = $(this).data("id");
+                var price = $(this).data("price");
+                var quantity = parseInt($("#inputQuantity" + index).val());
+                quantity --;
+                var data = { index: index, quantity: quantity };
+                ajaxLauncherPostJson(data, '@Url.Action("ChangeQuantity", "Checkout")', successChangeQuantity(index, price, quantity));
+            });
+
+            $(".btnQuantityPlus").click(function () {
+                var index = $(this).data("id");
+                var price = $(this).data("price");
+                var quantity = parseInt($("#inputQuantity" + index).val());
+                quantity ++;
+                var data = { index: index, quantity: quantity };
+                ajaxLauncherPostJson(data, '@Url.Action("ChangeQuantity", "Checkout")', successChangeQuantity(index, price, quantity));
+            });
+
+            function successChangeQuantity(index, price, quantity) {
+                var priceTxt = $("#price" + index);
+                $("#inputQuantity" + index).val(quantity);
+                var newPrice = price * quantity;
+                if (newPrice <= 0) {
+                    priceTxt.text("0");
+                    $("#divCart" + index).hide();
+                    var count = parseInt($("#contentBoxTrip").data("count"));
+                    count--;
+                    if (count == 0) {
+                        location.reload();
+                    }
+                    else {
+                        $("#contentBoxTrip").data("count", count);
+                    }
+                }
+                else {
+                    priceTxt.text(price * quantity);
+                }
+            }
+
+            $(".inputQuantity").change(function () {
+                var index = $(this).data("id");
+                var price = $(this).data("price");
+                var quantity = parseInt($(this).val());
+                var data = { index: index, quantity: quantity };
+                ajaxLauncherPostJson(data, '@Url.Action("ChangeQuantity", "Checkout")', successChangeQuantity(index, price, quantity));
+            });
+
+            $("#saveCartBtn").click(function () {
+                console.log("ici");
+                $.ajax({
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '@Url.Action("SaveCart", "Checkout")',
+                    success: function (data) {
+                        /*console.log(data);
+                        console.log(data.result);*/
+                        if (data.result == "notConnected") {
+                            /*$('#failureNotificationLogin').text("You need to be logged for saving your cart");*/
+                            $('#logInBtn').trigger('click');
+                        }
+                        else if (data.result == "ok") {
+                            $('#modalText').text("You have sucessfully sauvegarded your cart");
+                            $('#modalBtn').trigger('click');
+                        }
+                    },
+                    error: function (xhr, err) {
+                        if (xhr.readyState != 0 || xhr.status != 0) {
+                            alert("readyState: " + xhr.readyState + "  status: " + xhr.status + "\n\nresponseText: " + xhr.responseText);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<div class="container marginB100">
+    <div class="txtAlignC">
+        <h2>@langage.cart :</h2>
+    </div>
+    @if (Model != null && Model.superTripViewModel != null)
+    {
+        int i = 0;
+        if (Model.superTripViewModel.Count != 0)
+        {
+            <div class="contentBox" id="contentBoxTrip" data-count='@Model.superTripViewModel.Count'>
+                @foreach (var trip in Model.superTripViewModel)
+                {
+                    <div class="row marginB30" id='@("divCart"+i)'>
+                        <div class="col-xs-12">
+                            <div class="horizontalSeparate"></div>
+                            <div class="row tripBox">
+                                <div class="col-xs-2">
+                                    <p>
+                                        @trip.DepartureDate.Day.ToString("00")/@trip.DepartureDate.Month.ToString("00")/@trip.DepartureDate.Year : @trip.DepartureDate.Hour.ToString("00"):@trip.DepartureDate.Minute.ToString("00")<br />
+                                        @trip.ArrivalDate.Day.ToString("00")/@trip.ArrivalDate.Month.ToString("00")/@trip.ArrivalDate.Year : @trip.ArrivalDate.Hour.ToString("00"):@trip.ArrivalDate.Minute.ToString("00")
+                                    </p>
+                                </div>
+                                <div class="col-xs-5">
+                                    <p>
+                                        @trip.DepartureStation<br />
+                                        @trip.ArrivalStation
+                                    </p>
+                                </div>
+                                <div class="col-xs-2">
+                                    <p>
+                                        @if (trip.IsDirect)
+                                        {
+                                            @:Direct
+                                        }
+                                        else
+                                        {
+                                            @:Via :
+                                }
+                                        <br />
+                                        <span class="glyphicon glyphicon-time"></span>  @(Math.Floor((trip.ArrivalDate - trip.DepartureDate).TotalHours).ToString("00")) : @(((trip.ArrivalDate - trip.DepartureDate).TotalMinutes % 60).ToString("##"))
+                                    </p>
+                                </div>
+                                <div class="col-xs-3">
+                                    <p><span id='@("price"+i)'>@(trip.Price*trip.Quantity)</span> €</p>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <button type="button" class="btnQuantityLess btn btn-default" data-id='@i' data-price=@trip.Price>-</button>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="text" class="formControl txtAlignC inputQuantity" data-id='@i' data-price=@trip.Price id='@("inputQuantity"+i)' value="@trip.Quantity" />
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <button type="button" class="btnQuantityPlus btn btn-default" data-id='@i' data-price=@trip.Price >+</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    i++;
+                }
+            </div>
+            <div class="btnCartDiv txtAlignC">
+                @Html.ActionLink(@langage.deleteAll, "DeleteAll", "Checkout", new { @class = "btn btn-default" })
+                @Html.ActionLink(@langage.buy, "Confirmation", "Checkout", new { }, new { @class = "btnAction" })
+                <button type="button" class="btn btn-default" id="saveCartBtn">@langage.saveCart</button>
+            </div>
+        }
+        else
+        {
+            <div class="txtAlignC marginT50">
+                <h2 class="marginB30">Votre Panier est encore vide :( ! </h2>
+                @Html.ActionLink(@langage.reserv, "Index", "Trip", new { }, new { @class = "btnAction" })
+                @Html.ActionLink(@langage.promos, "Promo", "Trip", new { }, new { @class = "btnAction" })
+            </div>
+        }
+    }
+
+
+</div>

@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="aboutUs" xml:space="preserve">
+    <value>A propos</value>
+  </data>
+  <data name="bannerBtn" xml:space="preserve">
+    <value>TROUVEZ UN TRAIN</value>
+  </data>
+  <data name="bannerTitle" xml:space="preserve">
+    <value>Choisir son train.
+Rapidement et pas cher.</value>
+  </data>
+  <data name="bannerTxt" xml:space="preserve">
+    <value>aaaaa</value>
+  </data>
+  <data name="code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="codeInvalid" xml:space="preserve">
+    <value>Le code est invalide</value>
+  </data>
+  <data name="codeRequired" xml:space="preserve">
+    <value>Le code est requis</value>
+  </data>
+  <data name="comparePasswordInvalid" xml:space="preserve">
+    <value>Le mot de passe et le mot de passe de confirmation ne correspondent pas</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="dc" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut convallis erat. Donec turpis urna, molestie in ornare sed,</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut convallis erat. Donec turpis urna, molestie in ornare sed, fermentum et sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi posuere dignissim nisl fringilla maximus. Maecenas rutrum pellentesque mollis. Proin gravida diam ac urna mattis, consectetur volutpat lectus sodales. Donec aliquam dictum lobortis. Suspendisse arcu lacus, eleifend a sagittis ac, bibendum non sem.</value>
+  </data>
+  <data name="eMail" xml:space="preserve">
+    <value>Adresse EMail</value>
+  </data>
+  <data name="eMailInvalid" xml:space="preserve">
+    <value>L'adresse eMail n'est pas valide</value>
+  </data>
+  <data name="eMailRequired" xml:space="preserve">
+    <value>L'adresse eMail est requise</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="logIn" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Nouveau Mot de Passe</value>
+  </data>
+  <data name="newPasswordRequired" xml:space="preserve">
+    <value>Le nouveau Mot de Passe est requis</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Mot de Passe</value>
+  </data>
+  <data name="passwordConfirmation" xml:space="preserve">
+    <value>Confimer le Mot de Passe</value>
+  </data>
+  <data name="passwordConfirmationInvalid" xml:space="preserve">
+    <value>La confirmation du Mot de Passe est invalide</value>
+  </data>
+  <data name="passwordConfirmationRequired" xml:space="preserve">
+    <value>La confirmation du Mot de Passe est requise</value>
+  </data>
+  <data name="passwordInvalid" xml:space="preserve">
+    <value>Mot de Passe invalide</value>
+  </data>
+  <data name="passwordRequired" xml:space="preserve">
+    <value>Mot de Passe requis</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
+  <data name="rememberBrowser" xml:space="preserve">
+    <value>Se souvenir du navigateur</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Se souvenir de moi</value>
+  </data>
+  <data name="rememberPassword" xml:space="preserve">
+    <value>Se souvenir du Mot de Passe </value>
+  </data>
+  <data name="reserveTitle" xml:space="preserve">
+    <value>Reservez un billet de train</value>
+  </data>
+  <data name="oneWayTicket" xml:space="preserve">
+    <value>Aller simple</value>
+  </data>
+  <data name="roundTrip" xml:space="preserve">
+    <value>Aller retour</value>
+  </data>
+  <data name="departure" xml:space="preserve">
+    <value>Départ</value>
+  </data>
+  <data name="arrival" xml:space="preserve">
+    <value>Arrivée</value>
+  </data>
+  <data name="depart" xml:space="preserve">
+    <value>Aller le</value>
+  </data>
+  <data name="returnId" xml:space="preserve">
+    <value>Retour le</value>
+  </data>
+  <data name="departureItem" xml:space="preserve">
+    <value>Départ à</value>
+  </data>
+  <data name="arrivalItem" xml:space="preserve">
+    <value>Arrivée à</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut convallis erat. Donec turpis urna, molestie in ornare sed,</value>
+  </data>
+  <data name="whatIs" xml:space="preserve">
+    <value>Qu'est-ce que Train Commander ?</value>
+  </data>
+  <data name="how1" xml:space="preserve">
+    <value>Choisissez vos options</value>
+  </data>
+  <data name="how2" xml:space="preserve">
+    <value>Comparez les voyages</value>
+  </data>
+  <data name="how3" xml:space="preserve">
+    <value>Commandez une offre</value>
+  </data>
+  <data name="how4" xml:space="preserve">
+    <value>Créer un compte</value>
+  </data>
+  <data name="promos" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="reserv" xml:space="preserve">
+    <value>Réservation</value>
+  </data>
+  <data name="trip" xml:space="preserve">
+    <value>Voyage</value>
+  </data>
+  <data name="allTrain" xml:space="preserve">
+    <value>Tout les trains</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="directPath" xml:space="preserve">
+    <value>Trajet direct</value>
+  </data>
+  <data name="find" xml:space="preserve">
+    <value>Recherchez</value>
+  </data>
+  <data name="path" xml:space="preserve">
+    <value>Trajet</value>
+  </data>
+  <data name="pathThrough" xml:space="preserve">
+    <value>Trajet via</value>
+  </data>
+  <data name="allRight" xml:space="preserve">
+    <value>Tout Droits Réservés</value>
+  </data>
+  <data name="contactUs" xml:space="preserve">
+    <value>Contactez-Nous</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Questions Fréquemment Posés</value>
+  </data>
+  <data name="faqText1" xml:space="preserve">
+    <value>Si vous ne trouvez pas votre gare essayez avec le nom de la ville. Plus de 30000 ville sont enregistré dans notre service la votre y est surement aussi.</value>
+  </data>
+  <data name="faqTitle1" xml:space="preserve">
+    <value>Je ne trouve pas ma gare</value>
+  </data>
+  <data name="lastPromotions" xml:space="preserve">
+    <value>Les Dernières Promotions</value>
+  </data>
+  <data name="lastTripBuy" xml:space="preserve">
+    <value>Derniers voyage achetés</value>
+  </data>
+  <data name="pressCitation1" xml:space="preserve">
+    <value>Le nouveau site internet vous permettant de commander un train comme jamais</value>
+  </data>
+  <data name="pressCoverage" xml:space="preserve">
+    <value>Couverture Mediatique</value>
+  </data>
+  <data name="statisticTitle" xml:space="preserve">
+    <value>Les Villes Les Plus Sollicités</value>
+  </data>
+  <data name="termsUse" xml:space="preserve">
+    <value>Conditions d'Utilisation</value>
+  </data>
+  <data name="textHow1" xml:space="preserve">
+    <value>Remplissez notre formulaire selon vos souhaits</value>
+  </data>
+  <data name="textHow2" xml:space="preserve">
+    <value>Plusieurs trajets en fonctions de vos options seront proposés. Choisissez celui que vous préférez</value>
+  </data>
+  <data name="textHow3" xml:space="preserve">
+    <value>L'offre choisis se trouve dans votre panier. Suivez les étapes pour finaliser votre commande</value>
+  </data>
+  <data name="textHow4" xml:space="preserve">
+    <value>Créer un compte vous permettra de suivre vos commandes et de pouvoir faire des modifications sur vos voyages</value>
+  </data>
+  <data name="viewPromotion" xml:space="preserve">
+    <value>VOIR TOUTE NOS PROMOTIONS</value>
+  </data>
+  <data name="wantIt" xml:space="preserve">
+    <value>Je le veux</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>Prenom</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Votre Message</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Envoyer</value>
+  </data>
+  <data name="telephone" xml:space="preserve">
+    <value>Numéro de Telephone</value>
+  </data>
+  <data name="takePlace" xml:space="preserve">
+    <value>Je Prends Ma Place</value>
+  </data>
+  <data name="cart" xml:space="preserve">
+    <value>Panier</value>
+  </data>
+  <data name="buy" xml:space="preserve">
+    <value>Confirmer et procéder au payement</value>
+  </data>
+  <data name="deleteAll" xml:space="preserve">
+    <value>Supprimer tout le panier</value>
+  </data>
+  <data name="saveCart" xml:space="preserve">
+    <value>Enregistrer le panier</value>
+  </data>
+  <data name="confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="confirmationTxt" xml:space="preserve">
+    <value>Confirmez toute vos informations</value>
+  </data>
+  <data name="generalCondition" xml:space="preserve">
+    <value>En cochant cette case, je reconnais avoir pris connaissance des Conditions Générales de Vente SNCF, ainsi que des Conditions Générales de Vente et d'Utilisation du train-commander.fr et je les accepte.</value>
+  </data>
+  <data name="goToPayment" xml:space="preserve">
+    <value>Payer avec paypal</value>
+  </data>
+  <data name="ourConditions" xml:space="preserve">
+    <value>Nos Conditions</value>
+  </data>
+  <data name="passenger" xml:space="preserve">
+    <value>Vos Passager</value>
+  </data>
+  <data name="returnCart" xml:space="preserve">
+    <value>Retourner à votre panier</value>
+  </data>
+  <data name="yourInformations" xml:space="preserve">
+    <value>Vos Informations</value>
+  </data>
+  <data name="yourTrip" xml:space="preserve">
+    <value>Vos Voyages</value>
+  </data>
+  <data name="command" xml:space="preserve">
+    <value>Commande</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="errorPayment" xml:space="preserve">
+    <value>Erreur dans le payement veuillez reessayer.</value>
+  </data>
+  <data name="printTicket" xml:space="preserve">
+    <value>Imprimez votre billet</value>
+  </data>
+  <data name="receiveMailCanPrint" xml:space="preserve">
+    <value>Vous allez recoir un email pour votre ticket.
+Vous pouvez aussi imprimer votre ticket maintenant :</value>
+  </data>
+  <data name="sucessPay" xml:space="preserve">
+    <value>Votre commande est un succès</value>
+  </data>
+  <data name="acceptCondition" xml:space="preserve">
+    <value>Vous devez accepter les conditions !</value>
+  </data>
+  <data name="chooseOneWay" xml:space="preserve">
+    <value>Prendre cet aller</value>
+  </data>
+  <data name="chooseReturn" xml:space="preserve">
+    <value>Prendre ce retour</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+</root>

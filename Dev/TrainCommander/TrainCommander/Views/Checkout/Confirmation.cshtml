@@ -1,0 +1,176 @@
+﻿@using TrainCommander.Models
+@model ConfirmationViewModel
+@{
+    ViewBag.Title = "Train Commander";
+}
+
+@section head{
+    <title>@langage.confirmation</title>
+}
+
+@section scripts{
+    <script type="text/javascript">
+
+        jQuery(document).ready(function (jQuery) {
+            function exampleAjax(id) {
+                // Make sure do not click more than once
+                $('#divPublicRobotsVote' + robotId).hide();
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: "{'id':'" + id + "'}",
+                    dataType: 'json',
+                    url: 'https://api.sandbox.paypal.com',
+                    success: function (data) {
+                        oResult = JSON.parse(data.d);
+                    },
+                    error: function (xhr, err) {
+                        if (xhr.readyState != 0 || xhr.status != 0) {
+                            alert("readyState: " + xhr.readyState + "  status: " + xhr.status + "\n\nresponseText: " + xhr.responseText);
+                        }
+                    }
+                });
+            };
+        });
+    </script>
+}
+
+<div class="container">
+    <div class="row width100p margin0 overflowHidden">
+        <div class="form-header">
+            <h1 class="txtColorBlack">
+                @langage.confirmationTxt
+            </h1>
+        </div>
+        @using (Html.BeginForm("CreatePayment", "Checkout", FormMethod.Post, new { @class = "", id = "" }))
+        {
+            if (Model != null && Model.superTripViewModel != null)
+            {
+                <div class="contentBox padding30 marginB30" id="contentBoxTrip" data-count='@Model.superTripViewModel.Count'>
+                    <div class="form-header">
+                        <h3>
+                            @langage.yourTrip
+                        </h3>
+                    </div>
+                    @foreach (var trip in Model.superTripViewModel)
+                    {
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row tripBox">
+                                    <div class="col-sm-4">
+                                        <p>
+                                            @trip.DepartureDate.Day.ToString("00")/@trip.DepartureDate.Month.ToString("00")/@trip.DepartureDate.Year : @trip.DepartureDate.Hour.ToString("00"):@trip.DepartureDate.Minute.ToString("00")<br />
+                                            @trip.ArrivalDate.Day.ToString("00")/@trip.ArrivalDate.Month.ToString("00")/@trip.ArrivalDate.Year : @trip.ArrivalDate.Hour.ToString("00"):@trip.ArrivalDate.Minute.ToString("00")
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <p>
+                                            @trip.DepartureStation<br />
+                                            @trip.ArrivalStation
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <p>
+                                            @if (trip.IsDirect)
+                                            {
+                                                @:Direct
+                                            }
+                                            else
+                                            {
+                                                @:Via :
+                                            }
+                                            <br />
+                                            <span class="glyphicon glyphicon-time"></span>  @(Math.Floor((trip.ArrivalDate - trip.DepartureDate).TotalHours).ToString("00")) : @(((trip.ArrivalDate - trip.DepartureDate).TotalMinutes % 60).ToString("##"))
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <p>@langage.passenger : @trip.Quantity <br/>
+                                        @(trip.Price * @trip.Quantity) € </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="contentBox padding30 marginB30" id="contentBoxCoordonnees">
+                    <div class="form-header">
+                        <h3>
+                            @langage.yourInformations
+                        </h3>
+                    </div>
+                    <div class="form-group form-group-flex marginB25">
+                        <div class="thirtyFormLeft">
+                            @Html.LabelFor(m => m.coordonneesViewModel.FirstName, new { @class = "formLabelAbove" })
+                            @Html.TextBoxFor(m => m.coordonneesViewModel.FirstName, new { @class = "formControl" })
+                            @Html.ValidationMessageFor(m => m.coordonneesViewModel.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thirtyFormMiddle">
+                            @Html.LabelFor(m => m.coordonneesViewModel.LastName, new { @class = "formLabelAbove" })
+                            @Html.TextBoxFor(m => m.coordonneesViewModel.LastName, new { @class = "formControl" })
+                            @Html.ValidationMessageFor(m => m.coordonneesViewModel.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thirtyFormRight">
+                            @Html.LabelFor(m => m.coordonneesViewModel.Email, new { @class = "formLabelAbove" })
+                            @Html.TextBoxFor(m => m.coordonneesViewModel.Email, new { @class = "formControl" })
+                            @Html.ValidationMessageFor(m => m.coordonneesViewModel.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contentBox padding30 marginB30" id="contentBoxCoordonnees">
+                    <div class="form-header">
+                        <h3>
+                            @langage.passenger
+                        </h3>
+                    </div>
+                    @foreach (var trip in Model.superTripViewModel)
+                    {
+                        <div class="containerPeopleForTrip">
+                            <h2>
+                                @trip.DepartureStation @trip.DepartureDate.Day.ToString("00")/@trip.DepartureDate.Month.ToString("00")/@trip.DepartureDate.Year   @trip.DepartureDate.Hour.ToString("00"):@trip.DepartureDate.Minute.ToString("00")<br />
+                                @trip.ArrivalStation   @trip.ArrivalDate.Day.ToString("00")/@trip.ArrivalDate.Month.ToString("00")/@trip.ArrivalDate.Year : @trip.ArrivalDate.Hour.ToString("00"):@trip.ArrivalDate.Minute.ToString("00")
+                            </h2>
+                            @for (var i = 0; i < trip.Quantity; i++)
+                            {
+                                <div class="form-group form-group-flex marginB25">
+                                    <div class="fiftyFormLeft">
+                                        @Html.LabelFor(m => m.personneViewModel[i].FirstName, new { @class = "formLabelAbove" })
+                                        @Html.TextBoxFor(m => m.personneViewModel[i].FirstName, new { @class = "formControl" })
+                                        @Html.ValidationMessageFor(m => m.personneViewModel[i].FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="fiftyFormRight">
+                                        @Html.LabelFor(m => m.personneViewModel[i].LastName, new { @class = "formLabelAbove" })
+                                        @Html.TextBoxFor(m => m.personneViewModel[i].LastName, new { @class = "formControl" })
+                                        @Html.ValidationMessageFor(m => m.personneViewModel[i].LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="contentBox padding30 marginB30" id="contentBoxCondition">
+                    <div class="form-header">
+                        <h3>
+                            @langage.ourConditions
+                        </h3>
+                    </div>
+                    <div class="form-group form-group-flex marginB25">
+                        @Html.CheckBoxFor(m => m.conditionViewModel.ConditionAccepted, new { @class = "formCheckBox" })
+                        @Html.LabelFor(m => m.conditionViewModel.ConditionAccepted, new { @class = "" })
+                        @Html.ValidationMessageFor(m => m.conditionViewModel.ConditionAccepted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group txtAlignC">
+                    <h3>Prix Total: @Model.TotalPrice €</h3>
+                </div>
+                <div class="form-group txtAlignC">
+                    @Html.ActionLink(langage.returnCart, "Cart", "Checkout", new { }, new { @class = "btn btn-default" })
+                    <button type="submit" class="btnAction">@langage.goToPayment</button>
+                </div>
+            }
+        }
+    </div>
+</div>

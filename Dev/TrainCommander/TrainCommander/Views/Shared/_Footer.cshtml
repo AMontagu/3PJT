@@ -1,0 +1,41 @@
+﻿@using TrainCommander.Helpers
+<div id="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 divVerticalAlignFlexFooter">
+                <div class="row txtFooter">
+                    <div id="rights">
+                        <p>
+                            &copy; @DateTime.Now.Year - Train Commander. @langage.allRight |
+                        </p>
+                    </div>
+                    <div id="termAndContact">
+                        <p>
+                            <a class="alt_footer_text" href="#">@langage.termsUse</a> | <a class="alt_footer_text" href="http://www.myrobots.com/wiki/Contact">@langage.contactUs</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 divVerticalAlignFlexFooter">
+                <div id="footerFollowUsBox">
+                    <a href="#" class="floatl">
+                        @Html.Image("useFullIcon/icon_follow_us_01_facebook.png", "facebook", "facebook")
+                    </a>
+                    <a href="#" class="floatl">
+                        @Html.Image("useFullIcon/icon_follow_us_02_google.png", "google+", "google+")
+                    </a>
+                    <a href="#" class="floatl">
+                        @Html.Image("useFullIcon/icon_follow_us_03_twitter.png", "twitter", "twitter")
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 divVerticalAlignFlexFooter">
+                <div class="row txtFooter linkFooter">
+                    @Html.ActionLink(@langage.home, "Index", "Home")
+                    @Html.ActionLink(@langage.reserv, "Index", "Trip")
+                    @Html.ActionLink(@langage.promos, "Index", "Promos")
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

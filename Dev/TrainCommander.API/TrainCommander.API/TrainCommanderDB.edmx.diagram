@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcfc5f8ac8ac46459123f60e447eb5fc" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="TrainCommanderModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.AspNetUsers" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.Orders" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.Station" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.SuperTrip" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.Train" Width="1.5" PointX="11.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainCommanderModel.Trip" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="TrainCommanderModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK__Orders__id_user__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK__Orders__id_super__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_SUPERTRIP_ARRIVAL_STATION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_SUPERTRIP_DEPARTURE_STATION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_TRIP_ARRIVAL_STATION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_TRIP_DEPARTURE_STATION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.FK_TRAIN_TRAINID" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainCommanderModel.Trip_SuperTrip" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

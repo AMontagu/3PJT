@@ -1,0 +1,218 @@
+﻿@using TrainCommander.Models
+@model TripFormAndSuperTripViewModel
+
+@section head{
+    <title>@langage.reserv</title>
+}
+
+@section scripts{
+    <script type="text/javascript">
+
+        jQuery(document).ready(function (jQuery) {
+
+            if ($("#returnRadio").is(":checked")) {
+                $("#returnDiv").show();
+            }
+            if ($("#pathThroughRadio").is(":checked")) {
+                $("#pathThroughDiv").show();
+            }
+
+            $(".tripReturnDiv").hide();
+
+            jQuery(window).resize(function () {
+                drawChart();
+            });
+
+            jQuery.validator.methods.date = function (value, element) {
+                if (value) {
+                    try {
+                        $.datepicker.parseDate('dd/mm/yy', value);
+                    } catch (ex) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+
+            //$(".reserveForm").validate({
+            //    rules: {
+            //        datePickerReturn: { required: "#returnRadio:checked" },
+            //        CityThrough: {
+            //            required: function (element) {
+            //                if ($("#pathThroughRadio").is(':checked')) {
+            //                    console.log("ici");
+            //                    return true;
+            //                }
+            //                else {
+            //                    console.log("ici2");
+            //                    return false;
+            //                }
+            //            }
+            //        }
+            //    }
+            //});
+
+            $(function () {
+                // This will make every element with the class "date-picker" into a DatePicker element
+                $('#datePickerOne').datepicker({
+                    altField: "#datepicker",
+                    closeText: 'Fermer',
+                    prevText: 'Précédent',
+                    nextText: 'Suivant',
+                    currentText: 'Aujourd\'hui',
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                    monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                    dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    weekHeader: 'Sem.',
+                    dateFormat: 'dd/mm/yy'
+                });
+                $('#datePickerOne').datepicker("setDate", new Date());
+                $('#datePickerReturn').datepicker({
+                    altField: "#datepicker",
+                    closeText: 'Fermer',
+                    prevText: 'Précédent',
+                    nextText: 'Suivant',
+                    currentText: 'Aujourd\'hui',
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                    monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                    dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    weekHeader: 'Sem.',
+                    dateFormat: 'dd/mm/yy'
+                });
+                var date = new Date();
+                date.setDate(date.getDate() + 7);
+                $('#datePickerReturn').datepicker("setDate", date);
+            })
+
+            $(".kindOfTrip").change(function () {
+                console.log("change")
+                if ($("#pathThroughRadio").is(":checked")) {
+                    $("#pathThroughDiv").show();
+                    $("#CityThrough").rules("add", { required: true });
+                }
+                else {
+                    $("#pathThroughDiv").hide();
+                    $("#CityThrough").rules("remove", "required");
+                }
+            });
+
+            $(".tripWay").change(function () {
+                if ($("#returnRadio").is(":checked")) {
+                    $("#returnDiv").show();
+                    $("#datePickerReturn").rules("add", { required: true });
+                }
+                else {
+                    $("#returnDiv").hide();
+                    $("#datePickerReturn").rules("remove", "required");
+                }
+            });
+
+            $(".chooseOneWay").click(function () {
+                var index = $(this).data("index");
+                var data = { index: index }
+                ajaxLauncherPostJson(data, '@Url.Action("AddToCartjson", "Checkout")', printReturn());
+            });
+
+            function printReturn() {
+                $(".tripReturnDiv").show();
+                $(".tripOneWayDiv").hide();
+            }
+
+            function exampleAjax(id) {
+                // Make sure do not click more than once
+                $('#divPublicRobotsVote' + robotId).hide();
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: "{'id':'" + id + "'}",
+                    dataType: 'json',
+                    url: '@Url.Action("Index", "Home")',
+                    success: function (data) {
+                        oResult = JSON.parse(data.d);
+                    },
+                    error: function (xhr, err) {
+                        if (xhr.readyState != 0 || xhr.status != 0) {
+                            alert("readyState: " + xhr.readyState + "  status: " + xhr.status + "\n\nresponseText: " + xhr.responseText);
+                        }
+                    }
+                });
+            };
+        });
+    </script>
+}
+
+<div class="container-fluid">
+    <div class="row width100p margin0 overflowHidden">
+        @Html.Partial("ReserveForm", Model.tripFormModel)
+    </div>
+</div>
+
+<div class="container">
+    @if (Model != null && Model.superTripViewModel != null)
+    {
+        int i = 0;
+        foreach (var trip in Model.superTripViewModel)
+        {
+            <div class="row marginB30 @(trip.isReturn ? "tripReturnDiv":"tripOneWayDiv")">
+                <div class="col-xs-12">
+                    <div class="contentBox">
+                        <div class="row tripBox">
+                            <div class="col-xs-2">
+                                <p>
+                                    @trip.DepartureDate.Day.ToString("00")/@trip.DepartureDate.Month.ToString("00")/@trip.DepartureDate.Year : @trip.DepartureDate.Hour.ToString("00"):@trip.DepartureDate.Minute.ToString("00")<br />
+                                    @trip.ArrivalDate.Day.ToString("00")/@trip.ArrivalDate.Month.ToString("00")/@trip.ArrivalDate.Year : @trip.ArrivalDate.Hour.ToString("00"):@trip.ArrivalDate.Minute.ToString("00")
+                                </p>
+                            </div>
+                            <div class="col-xs-5">
+                                <p>
+                                    @trip.DepartureStation<br />
+                                    @trip.ArrivalStation
+                                </p>
+                            </div>
+                            <div class="col-xs-2">
+                                <p>
+                                    @if (trip.IsDirect)
+                                    {
+                                        @:Direct
+                                        }
+                                    else
+                                    {
+                                        @:Via :
+                                }
+                                    <br />
+                                    <span class="glyphicon glyphicon-time"></span>  @(Math.Floor((trip.ArrivalDate - trip.DepartureDate).TotalHours).ToString("00")) : @(((trip.ArrivalDate - trip.DepartureDate).TotalMinutes % 60).ToString("##"))
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
+                                <p>@trip.Price €</p>
+                                <div class="width100p txtAlignC">
+                                    @if (Model.tripFormModel.TripWay)
+                                    {
+                                        @Html.ActionLink(@langage.takePlace, "AddToCart", "Checkout", new { index = i }, new { @class = "btnAction" });
+                                    }
+                                    else if(!trip.isReturn)
+                                    {
+                                        <button type="button" class="chooseOneWay btnAction" data-index=@i >@langage.chooseOneWay</button>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(@langage.chooseReturn, "AddToCart", "Checkout", new { index = i }, new { @class = "btnAction" });
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            i++;
+        }
+    }
+</div>
+
+
+
